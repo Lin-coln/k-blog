@@ -31,6 +31,7 @@ export default {
         }),
         ...mapGetters([
             'drawerbarListData',
+            'isSmallScreen',
         ]),
         focusIndex(){
             return this.drawerbarListFocusIndex
@@ -64,9 +65,15 @@ export default {
         }
     },
     methods:{
-        ...mapMutations(['drawerbarListItemClick']),
+        ...mapMutations([
+            'drawerbarListItemClick',
+            'swtichDrawerbar'
+        ]),
         handleClick(id, index){
             this.drawerbarListItemClick({id, index})
+            if(this.isSmallScreen){
+                this.swtichDrawerbar();
+            }
         }
     }
 }
