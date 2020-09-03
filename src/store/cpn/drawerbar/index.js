@@ -20,6 +20,10 @@ const getters = {
     drawerbarZIndex:(state, getters, root, rootGetters)=> 
         rootGetters.isSmallScreen? 4 : 1,
 }
+import list from './list'
+const modules={
+    list: list,
+}
 export default {
-    state, mutations, actions, getters
+    state, mutations, actions, getters, modules
 } 

@@ -13,9 +13,11 @@ const getters = {
 
 }
 
+import pagecontainer from './pagecontainer'
 import drawerbar from './drawerbar'
 import appbar from './appbar'
 const modules = {
+    pagecontainer: pagecontainer,
     drawerbar: drawerbar,
     appbar: appbar,
 }

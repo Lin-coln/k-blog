@@ -1,10 +1,8 @@
 <template>
-  <div id="app" :style="style" @click="appclick">
+  <div id="app" :style="style">
       <appbar/>
-
-      <drawerbar>
-        <button @click="handleClick" />
-      </drawerbar>
+      <pagecontainer/>
+      <drawerbar/>
 
       <button @click="handleClick" />
 
@@ -14,11 +12,12 @@
 
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
-import drawerbar from '@/components/drawerbar'
 import appbar from '@/components/appbar'
+import pagecontainer from '@/components/pagecontainer'
+import drawerbar from '@/components/drawerbar'
 export default {
     components:{
-      drawerbar, appbar
+      appbar, pagecontainer, drawerbar
     },
 
 
@@ -73,10 +72,8 @@ export default {
       'setBodyHeight',
     ]),
 
-    appclick:()=>{console.log('appclick')},
-
     handleClick(){
-      this.switchDark()
+      // this.switchDark()
       // this.switchDrawerbar();
       
       // if(this.$store.state.cpn.appbar.appbarSolid){
@@ -137,10 +134,6 @@ body{
   overflow: hidden;
   position: relative;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
 }
 
 

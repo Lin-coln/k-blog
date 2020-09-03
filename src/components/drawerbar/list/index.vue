@@ -1,53 +1,14 @@
 <template>
-    <div class="drawerbarlist" :style='style'>
-        <item icon='fas fa-compass fa-1x fa-fw' text='Explore' 
-                :focusBackgroundColor='focusBackgroundColor'
-                :focusColor='focusColor'
-                :blurColor='blurColor'
-                @click="handleClick(0)"
-                :isFocus="focusIndex==0"/>
-        <item icon='fas fa-cloud fa-1x fa-fw'   text='Cloud'   
-                :focusBackgroundColor='focusBackgroundColor'
-                :focusColor='focusColor'
-                :blurColor='blurColor'
-                @click="handleClick(1)"
-                :isFocus="focusIndex==1"/>
-        <item icon='fas fa-hdd fa-1x fa-fw'     text='Local'  
-                :focusBackgroundColor='focusBackgroundColor'
-                :focusColor='focusColor'
-                :blurColor='blurColor'
-                @click="handleClick(2)"
-                :isFocus="focusIndex==2"/>
-        <item icon='fas fa-list fa-1x fa-fw'    text='Playlist'
-                :focusBackgroundColor='focusBackgroundColor'
-                :focusColor='focusColor'
-                :blurColor='blurColor'
-                @click="handleClick(3)"
-                :isFocus="focusIndex==3"/>
-        <item icon='fas fa-heart fa-1x fa-fw'   text='Favorite' 
-                :focusBackgroundColor='focusBackgroundColor'
-                :focusColor='focusColor'
-                :blurColor='blurColor'
-                @click="handleClick(4)"
-                :isFocus="focusIndex==4"/>
-
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='FFF' :blurColor='blurColor' @click="handleClick(4)"/>        
-        <item icon='fas fa-heart fa-1x fa-fw'   text='F2FF' :blurColor='blurColor' @click="handleClick(4)"/>        
-
-
+    <div class="drawerbarlist" 
+        :style='style'>
+        <item         
+            v-for="(item, index) in drawerbarListData"
+            :key='index' :isFocus='index == focusIndex'
+            :icon='item.icon' :text='item.name' 
+            @click='handleClick(item.id, index)'
+            :focusBackgroundColor='focusBackgroundColor'
+            :focusColor='focusColor'
+            :blurColor='blurColor'/>
         <div class="drawerbarhighlight" :style='highlightStyle'></div>
     </div>
 </template>
@@ -65,8 +26,15 @@ export default {
     computed:{
         ...mapState({
             isDark:state=>state.theme.isDark,
+            drawerbarListFocusIndex:state=>
+                state.cpn.drawerbar.list.drawerbarListFocusIndex,
         }),
-        
+        ...mapGetters([
+            'drawerbarListData',
+        ]),
+        focusIndex(){
+            return this.drawerbarListFocusIndex
+        },
         focusBackgroundColor(){
             return this.isDark
                 ? 'hsla(0,0%,100%, 8%)'
@@ -82,13 +50,9 @@ export default {
             ? 'hsla(0,0%,100%, 40%)'
             : 'rgba(0,0,0,0.5)'
         },
-
-        focusIndex(){
-            return 0 //this.getCurrentPageIndex
-        },
         style(){
             return {
-
+                
             }
         },
         highlightStyle(){
@@ -100,9 +64,9 @@ export default {
         }
     },
     methods:{
-        // ...mapMutations(['setCurrentPageByIndex']),
-        handleClick(index){
-            // this.setCurrentPageByIndex(index)
+        ...mapMutations(['drawerbarListItemClick']),
+        handleClick(id, index){
+            this.drawerbarListItemClick({id, index})
         }
     }
 }

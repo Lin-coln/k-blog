@@ -50,7 +50,7 @@ const getters = {
         ((state.titleStyleOverride.maxWidth!=='0')
         &&!root.cpn.appbar.appbarSolid)
         ? state.titleStyleOverride.maxWidth
-        : `calc(100% - 3 * ${rootGetters.appbarPaddingStr} - ${offset})`,
+        : `calc(100vw - 3 * ${rootGetters.appbarPaddingStr} - ${offset})`,
 }
 export default {
     state, mutations, actions, getters

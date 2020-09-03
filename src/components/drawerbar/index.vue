@@ -42,32 +42,37 @@ export default {
             }
         },
     },
+    watch:{
+        isSmallScreen(val){
+            if(
+                (this.drawerbarClose && !val) ||
+                (!this.drawerbarClose && val)
+            )
+                this.switchDrawerbar()
+        }
+    },
     methods:{
         ...mapMutations([
             'switchDrawerbar',
             'switchDark', 
         ]),
-        onClick(event){
-            console.log('drawerbarmask click')
-            
-        }
-    },
-    mounted(){
-        var that = this
-        document.addEventListener('click', (e)=>{
+        handleSmallScreenClose(e){
             const event = window.event || e;
             const path = e.path || (e.composedPath && e.composedPath());
 
-            if(!that.drawerbarClose && that.isSmallScreen)
+            if(!this.drawerbarClose && this.isSmallScreen)
                 var close = true
                 path.forEach(ele=>{
                     if(ele.id==='drawerbar') close=false
                 })
                 if(close) {
-                    that.switchDrawerbar()
+                    this.switchDrawerbar()
                     event.stopPropagation()
                 }
-        }, true)
+        }
+    },
+    mounted(){
+        document.addEventListener('click', this.handleSmallScreenClose, true)
     }
 
 }
@@ -90,7 +95,5 @@ export default {
             width: 0px;
         }
     }
-
-    
 }
 </style>

@@ -5,7 +5,13 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
   const routes = [
-  // { path: '/', redirect: '/Home' },
+  { name: 'default', path: '/', redirect: '/home' },
+  {
+    name: 'home', path: '/home', component:()=>import('@/views/home')
+  },
+  {
+    name: 'about', path: '/about', component:()=>import('@/views/about')
+  }
 ]
 
 const router = new VueRouter({

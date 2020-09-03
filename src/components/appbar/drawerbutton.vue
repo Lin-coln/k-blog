@@ -5,7 +5,7 @@ import { mapMutations } from 'vuex'
 export default {
     extends: button,
     props:{
-        icon: { type: String, default: 'fas fa-list fa-1x fa-fw' },
+        icon: { type: String, default: 'fas fa-bars fa-1x fa-fw' },
     },
     methods:{
         ...mapMutations([
