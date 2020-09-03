@@ -67,12 +67,12 @@ export default {
     methods:{
         ...mapMutations([
             'drawerbarListItemClick',
-            'swtichDrawerbar'
+            'switchDrawerbar',
         ]),
         handleClick(id, index){
             this.drawerbarListItemClick({id, index})
             if(this.isSmallScreen){
-                this.swtichDrawerbar();
+                this.switchDrawerbar();
             }
         }
     }
