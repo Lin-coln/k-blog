@@ -5,7 +5,7 @@ const state = () => ({
     appbarHeight: 68,
     appbarHeightExpand: '0px',
     appbarColorLight: 'hsl(0, 0%, 98%)',
-    appbarColorDark:  'hsl(0, 0%, 20%)',
+    appbarColorDark:  'hsl(0, 0%, 25%)',
     appbarContentColorLight:    'black',
     appbarContentColorDark:     'white',
     appbarContentColorOverride: '0',

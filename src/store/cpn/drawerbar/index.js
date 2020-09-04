@@ -2,7 +2,7 @@
 
 const state = () => ({
     drawerbarWidth: 240,
-    drawerbarColorLight: 'hsl(0, 0%, 95%)',
+    drawerbarColorLight: 'hsl(0, 0%, 92%)',
     drawerbarColorDark: 'hsl(0, 0%, 15%)',
     drawerbarClose: false,
 })

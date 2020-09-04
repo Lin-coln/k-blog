@@ -72,6 +72,9 @@ export default {
         }
     },
     mounted(){
+        if(!this.drawerbarClose && this.isSmallScreen)
+            this.switchDrawerbar()
+
         document.addEventListener('click', this.handleSmallScreenClose, true)
     }
 

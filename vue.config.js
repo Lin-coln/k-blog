@@ -8,6 +8,16 @@ module.exports = {
 
     chainWebpack: config => {
         config.resolve.alias.set('@pub', resolve('public'))
+
+        config.module
+                    .rule('md')
+                    .test(/\.md$/)
+                    .use('html-loader')
+                    .loader('html-loader')
+                    .end()
+                    .use('markdown-loader')
+                    .loader('markdown-loader')
+                    .end()
     },
     configureWebpack: config => {
         if (process.env.NODE_ENV === 'production') {

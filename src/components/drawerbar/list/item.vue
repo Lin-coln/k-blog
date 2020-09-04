@@ -24,6 +24,7 @@ export default {
         style(){
             return {
                 color: this.isFocus?this.focusColor: this.blurColor,
+                fontWeight: this.isFocus?'bold':'normal',
                 '--focusBackgroundColor': this.focusBackgroundColor,
             }
         }
@@ -42,7 +43,6 @@ export default {
     box-sizing: border-box;
     font-size: 1.6em;
     transition: all 300ms ease-in-out;
-    font-weight: bold;
 
     -webkit-tap-highlight-color:transparent;
     &:hover{

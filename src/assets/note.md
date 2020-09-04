@@ -1,24 +1,3 @@
-# **坑**
-- **BrowserWindow** 的 **webPreferences** 的**nodeIntegration** 要为 **true**  (访问系统资源)
-- **BrowserWindow** 的 **webPreferences** 的**webViewTag** 要为 **true** 
-- **webView**(html)的**nodeintegration**要为**true**
-***
-# **常用事件**
-## APP常用事件: **app.on(event, function)**
-- **ready** Electron初始化后
-- **activate** 窗口激活后
-- **window-all-closed** 所有窗口关闭后
-- **before-quit** 所有窗口即将关闭时
-- **will-quit** 所有窗口关闭-应用即将退出时
-- **quit** 应用退出后
-## webContents常用事件: **page.on(event, function)**
-- **dom-ready** 框架文本加载完后
-- **did-finish-load** 导航完成时触发(onload后)
-# **ProcessAPI**: process.***
-- **getCPUUsage()** CPU使用状况
-- **env** 环境变量
-- **arch** 位数
-- **platform** 平台信息
 
 # **File对象**
 ```JavaScript
@@ -39,6 +18,7 @@ webview.addEventListener('did-stop-loading', fun);
 ```
 - **preload**="./xx.js" 载入脚本
 - **wb.insertCSS(string)** 注入css样式
+
 ```JavaScript
 wb.insertCSS('
     #su {
@@ -47,6 +27,7 @@ wb.insertCSS('
 ');
 ```
 - **wb.executeJavaScript(string)** 注入js
+
 ```JavaScript
 wb.executeJavaScript('
     console.log('oops');
@@ -54,7 +35,8 @@ wb.executeJavaScript('
 ```
 # **window对象**
 ## window.open() 打开子窗口 返回BrowserWindowProxy对象
-- (string html, string name, string feature)
+	(string html, string name, string feature)
+
 ## window.opener.postMessage() 向父窗口传递信息
 子窗口
 ```JavaScript
@@ -75,7 +57,7 @@ window.addEventListener('message', (msg)=>{
 ```js
 var subwin = window.open('...','subwin');
 ```
-- 关闭子窗口 subwin.close()
+关闭子窗口 subwin.close()
 
 
 
@@ -147,12 +129,12 @@ console.log(dialog);
         - defaultPath String 默认路径
         - buttonLabel String [确认]按钮的文本
         - filters filter[] 过滤格式
-            ```js
-            filters: [
-                { name: '显示的名称', extensions: ['js', 'html', '过滤的格式'] },
-                { name: '显示的名称', extensions: ['js', 'html', '过滤的格式'] }
-            ]
-            ```
+```js
+filters: [
+{ name: '显示的名称', extensions: ['js', 'html', '过滤的格式'] },
+{ name: '显示的名称', extensions: ['js', 'html', '过滤的格式'] }
+]
+```
         - properties String 属性
           - openFile 选择文件
           - openDirectory 选择文件夹

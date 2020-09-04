@@ -2,9 +2,11 @@
   <div id="app" :style="style">
       <appbar/>
       <pagecontainer/>
-      <drawerbar/>
-
+      <drawerbar>
+        
       <button @click="handleClick" />
+      </drawerbar>
+
 
       {{ stupidsValue }}
   </div>
@@ -73,7 +75,7 @@ export default {
     ]),
 
     handleClick(){
-      // this.switchDark()
+      this.switchDark()
       // this.switchDrawerbar();
       
       // if(this.$store.state.cpn.appbar.appbarSolid){

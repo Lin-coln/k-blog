@@ -3,7 +3,14 @@
         ref='layout'
         :style="style" 
         class="scrollCtn">
-        <slot></slot>
+        <div 
+            :style="{ 
+                minHeight: `calc(100vh - ${this.appbarHeightStr})`, 
+                width: '100%', 
+                height: 'auto' 
+            }">
+            <slot></slot>
+        </div>
     </div>
 </template>
 
@@ -11,8 +18,9 @@
 import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
     props:{
-        bgColor:    {type: String, default: 'transparent'},
-        offset:     {type:String, default: '0px'},
+        bgColor:        {type:String, default: 'transparent'},
+        bgColorDark:    {type:String, default: 'transparent'},
+        offset:         {type:String, default: '0px'},
         paddingLeft:    {type:String, default: '0px'},
         paddingRight:   {type:String, default: '0px'},
         paddingTop:     {type:String, default: '0px'},
@@ -20,14 +28,15 @@ export default {
     },
     computed:{
         ...mapState({
-            appbarSolid:state=>state.cpn.appbar.appbarSolid
+            appbarSolid:state=>state.cpn.appbar.appbarSolid,
+            isDark:state=>state.theme.isDark,
         }),
         ...mapGetters([
             'appbarHeightStr',
             'appbarHeightWidthExpandStr',
         ]),
         style(){ return {
-            backgroundColor: this.bgColor,
+            backgroundColor: this.isDark?this.bgColorDark:this.bgColor,
             paddingTop: 
                 this.appbarSolid
                 ? `calc(${this.appbarHeightWidthExpandStr} + ${this.paddingTop})`
