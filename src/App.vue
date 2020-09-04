@@ -124,7 +124,10 @@ body{
   height: 100vh;
   font-size: 62.5%;
   transition: background-color 300ms ease-in-out;
+  
+  overflow: auto;
 }
+
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
