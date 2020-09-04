@@ -1,5 +1,5 @@
 
-# **File对象**
+# **File啊吧啊吧a对象**
 ```JavaScript
 const fs = require('fs');
 var fileBuffer = fs.readFileSync(path);
