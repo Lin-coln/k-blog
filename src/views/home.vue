@@ -1,22 +1,19 @@
 <template>
-    <mdlayout :mdData='demo'/>
+    <mdlayout :mdData='note'/>
 </template>
 
 <script>
 import mdlayout from './mdlayout'
 
 
-import demo from "@/assets/demo.md"
-import note from "@pub/notes/note.md"
+import note from "@/assets/note.md"
+// const note = require("@pub/notes/note.md")
 export default {
     components:{
         mdlayout
     },
-    // data(){return{
-    //     demo: demo
-    // }},
     computed:{
-        demo(){
+        note(){
             return note
         }
     }

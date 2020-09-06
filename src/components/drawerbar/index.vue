@@ -34,6 +34,9 @@ export default {
                 backgroundColor: this.drawerbarColor,
                 zIndex: this.drawerbarZIndex,
                 transform: `translateX(${this.drawerbarClose?'-100%':0})`,
+                boxShadow:  this.drawerbarClose
+                            ? `0 0 10px rgba(0,0,0,0)`
+                            : `0 0 10px rgba(0,0,0,0.4)`
             }
         },
         contentStyle(){
@@ -87,7 +90,6 @@ export default {
     position: fixed;
     left: 0;
     bottom: 0;
-    box-shadow: 0 0 10px rgba(0,0,0,0.4);
     transition: background-color 300ms ease-in-out,
                 transform 300ms ease-in-out;
 

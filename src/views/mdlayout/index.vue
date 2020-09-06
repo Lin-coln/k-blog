@@ -17,7 +17,7 @@
 import scroll from '@/components/pagecontainer/scrollCtn'
 import styler from './styler'
 
-import { mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 
 export default {
@@ -31,6 +31,10 @@ export default {
         padding: ['16px','32px'],
     }},
     computed:{
+        ...mapState({
+            bodyWidth:state=>state.env.bodyWidth,
+            drawerbarWidth:state=>state.cpn.drawerbar.drawerbarWidth,
+        }),
         ...mapGetters([
             'isSmallScreen',
         ]),
@@ -43,7 +47,28 @@ export default {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-        }}
+        }},
+
+        titleLeft(){
+            var a = this.bodyWidth - this.drawerbarWidth
+            if(a<=1000+2*32){
+                return this.isSmallScreen?'16px':'32px'
+            }else{
+                return `calc((100% - 1000px)/2)`
+            }
+        }
+    },
+    watch:{
+        bodyWidth(val){
+            this.setAppbarTitleStyleOverride({
+                left: this.titleLeft, 
+                top: '108px', 
+                height: '80px', 
+                width: '100%', 
+                fontSize: '8em',
+                maxWidth: `100%`,
+            })
+        }
     },
     methods:{
         ...mapMutations([
@@ -51,10 +76,10 @@ export default {
             'setAppbarTitleStyleOverride',
         ]),
     },
-    beforeMount(){
+    mounted(){
         this.setAppbarHeightExpand('120px')
         this.setAppbarTitleStyleOverride({
-            left: '16px', 
+            left: this.titleLeft, 
             top: '108px', 
             height: '80px', 
             width: '100%', 
