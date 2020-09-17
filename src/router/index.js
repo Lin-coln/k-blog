@@ -10,6 +10,9 @@ Vue.use(VueRouter)
     name: 'home', path: '/home', component:()=>import('@/views/home')
   },
   {
+    name: 'notes', path: '/notes', component:()=>import('@/views/notes')
+  },
+  {
     name: 'about', path: '/about', component:()=>import('@/views/about')
   }
 ]

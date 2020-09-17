@@ -13,6 +13,8 @@ const mutations = {
                     return '/'
                 case 'home':
                     return '/home'
+                case 'notes':
+                    return '/notes'
                 case 'about':
                     return '/about'
             }
@@ -37,6 +39,11 @@ const getters = {
             id:   'home',
             icon: 'fas fa-home fa-1x fa-fw',     
             name: 'Home', 
+        },
+        { 
+            id:   'notes',
+            icon: 'fas fa-book fa-1x fa-fw',     
+            name: 'Notes', 
         },
         { 
             id:   'about',
